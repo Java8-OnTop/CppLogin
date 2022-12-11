@@ -196,11 +196,8 @@ class UserLogin{
 				if (line.find("#ID:" + to_string(id)) != string::npos) {
 					if (attempt == password) {
 						fin.close();
-						
-						return true;      // return userID
-
 					} else {
-						return false;
+
 					}
 
 				} else {

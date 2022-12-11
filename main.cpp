@@ -37,7 +37,7 @@ class UserLogin{
 		int getLastUserID(string file) {
 			ifstream fin;
 
-			fin.open(file, ifstream::in);
+			fin.open(file, ifstream::in); //opens file.
 
 			if (fin.peek() == EOF) {    // no user available now
 				return 0;
@@ -54,7 +54,7 @@ class UserLogin{
 			fin.close();
 			line.erase(0, 4);
 
-			return stoi(line);
+			return stoi(line); //returns line value
 		}
 
     public:
@@ -117,10 +117,10 @@ class UserLogin{
 
 			while(!showfile.eof()){
 				getline(showfile,line);
-				cout << line << "\n";
+				cout << line << "\n"; //prints line number
 			}
 
-			cout << "\n";
+			cout << "\n"; //prints newline
 
 			showfile.close();
 		}
@@ -141,15 +141,15 @@ class UserLogin{
 				fout << endl;
 			}
 
-			fout << "#ID:" << id;
+			fout << "#ID:" << id; //prints ID tag to file.
 
 			fout.close();
 		}
 
 		int authenticateUsername(string attempt, string file) {
-			ifstream fin;
+			ifstream fin; //sets ifstream to fin
 
-			fin.open(file, ifstream::in);
+			fin.open(file, ifstream::in); //opens file
 
 			string line = "";
 			string username = "";
@@ -158,9 +158,9 @@ class UserLogin{
 			while (fin.peek() != EOF) {
 				fin >> line;
 
-				if (line.find("#ID:") != string::npos) {
+				if (line.find("#ID:") != string::npos) { //finds ID
 					if (attempt == username) {
-						fin.close();
+						fin.close(); //close file.
 						
 						line.erase(0, 4);
 						
@@ -171,7 +171,7 @@ class UserLogin{
 					}
 
 				} else {
-					char decrypteChar = this->encryption.decrypt(stoi(line));
+					char decrypteChar = this->encryption.decrypt(stoi(line)); //decryption
 					username.push_back(decrypteChar);
 				}
 
@@ -201,7 +201,7 @@ class UserLogin{
 					}
 
 				} else {
-					if (line.find("#ID:") != string::npos) {
+					if (line.find("#ID:") != string::npos) { //finds ID
 						password.clear();
 
 					} else {
@@ -240,7 +240,7 @@ class UserLogin{
 
 			if(id != 0)
 			{
-				int user_attempts=5;
+				int user_attempts=5; //sets login attempts to 5.
 
 				// move ahead , does nothing for now
 				while(user_attempts != 0)
@@ -255,7 +255,7 @@ class UserLogin{
 						cout<<"\nBingo ! You now have access to the files\n";
 
 						cout<<"\nEnter the file name you want to look at: ";
-						getline(cin, file_name);
+						getline(cin, file_name); //finds the line that contains the specified input.
 
 						//return the file content
 						this->show_file(file_name);
@@ -302,11 +302,11 @@ class UserLogin{
 };
 
 int main(){
-    UserLogin app;
+    UserLogin app; // Shortens the UserLogin method.
 
-    app.check_file();
+    app.check_file(); //checks files
 
-    app.login();
+    app.login(); //instantiates the login system
 	
     string freezing_terminal;
 
@@ -314,5 +314,5 @@ int main(){
 
     getline(cin, freezing_terminal);
 
-    return 0;
+    return 0; //returns default value
 }
